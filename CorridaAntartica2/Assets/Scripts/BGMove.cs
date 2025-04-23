@@ -6,10 +6,11 @@ public class BGMove : MonoBehaviour
 {
     public Transform End;
     public float Speed;
+    public float TopSpeed;
     private float speed;
     [SerializeField]private Vector3 _startPos;
 
-
+    public bool MainMenu = false;
     private void Start()
     {
         _startPos = End.position;
@@ -18,19 +19,27 @@ public class BGMove : MonoBehaviour
 
     private void Update()
     {
-        if (speed < 30f)
+        if (!MainMenu)
         {
-            speed = (Time.time + Speed) / 6;
-        }
+            if (speed < TopSpeed)
+            {
+                speed = (Time.timeSinceLevelLoad + Speed) / 5;
+            }
 
-        if(speed > Speed)
-        {
-            transform.Translate((Vector3.right * -1) * speed * Time.deltaTime);
+            if (speed > Speed)
+            {
+                transform.Translate((Vector3.right * -1) * speed * Time.deltaTime);
+            }
+            else
+            {
+                transform.Translate((Vector3.right * -1) * Speed * Time.deltaTime);
+            }
         }
         else
         {
             transform.Translate((Vector3.right * -1) * Speed * Time.deltaTime);
         }
+
 
     }
 

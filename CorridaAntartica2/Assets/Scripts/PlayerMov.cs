@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerMov : MonoBehaviour
 {
@@ -13,9 +14,7 @@ public class PlayerMov : MonoBehaviour
 
     [Header("Lerp/Launch")]
     [SerializeField] private float _speed;
-
-
-   public bool OnTop, OnBotton;
+    public bool OnTop, OnBotton;
 
     [HideInInspector] public Rigidbody2D Rigidbody2D;
     // How much to smooth out the movement
@@ -45,6 +44,7 @@ public class PlayerMov : MonoBehaviour
             BottonPos();
         }
 
+        /*
         if(!_getTouch.Pressing && !OnBotton)
         {
             _anim.SetTrigger("Descendo");
@@ -53,6 +53,7 @@ public class PlayerMov : MonoBehaviour
         {
             _anim.SetTrigger("Subindo");
         }
+        */
     }
 
     public void Move(float x)
@@ -70,7 +71,6 @@ public class PlayerMov : MonoBehaviour
     }
     public void BottonPos()
     {
-      
         _playerTransform.position = new Vector3(_playerTransform.position.x, Mathf.Lerp(_playerTransform.position.y, _bottonPosition.position.y, Time.deltaTime * _speed / 2), 0);
     }
 
@@ -78,10 +78,12 @@ public class PlayerMov : MonoBehaviour
     {
         _anim.SetBool("OnBotton", x);
         _anim.ResetTrigger("Descendo");
+        //AudioManager.instance.Play("Subindo");
     }
     public void AnimTop(bool x)
     {
         _anim.SetBool("OnTop", x);
         _anim.ResetTrigger("Subindo");
+        //AudioManager.instance.Play("Subindo");
     }
 }

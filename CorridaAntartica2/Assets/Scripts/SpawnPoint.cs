@@ -10,7 +10,8 @@ public class SpawnPoint : MonoBehaviour
     [SerializeField] private float _muzzleForce = 700f;
 
     [Tooltip("SpawnPoint")]
-    [SerializeField] private List<Transform> _muzzlePosition;
+    [SerializeField] private Transform _muzzlePositionTop;
+    [SerializeField] private Transform _muzzlePositionBotton;
 
     [Tooltip("Time between spawns")]
     [SerializeField] private float _cooldownWindow = 0.1f;
@@ -26,8 +27,18 @@ public class SpawnPoint : MonoBehaviour
             GameObject bulletObject = ObjectPool.SharedInstance.GetPooledObject();
             if (bulletObject != null)
             {
-                int i = Random.Range(0, 2);
-                bulletObject.transform.SetPositionAndRotation(_muzzlePosition[i].position, _muzzlePosition[i].rotation);
+                SpawnPosition currentType = bulletObject.GetComponent<ObstaculoMov>().type;
+                switch (currentType)
+                {
+                    case SpawnPosition.Up:
+                        bulletObject.transform.SetPositionAndRotation(_muzzlePositionTop.position, _muzzlePositionTop.rotation);
+                        break;
+
+                    case SpawnPosition.Botton:
+                        bulletObject.transform.SetPositionAndRotation(_muzzlePositionBotton.position, _muzzlePositionBotton.rotation);
+                        break;
+
+                }
                 bulletObject.SetActive(true);
                 StartCoroutine(bulletObject.GetComponent<ObstaculoMov>().ReturnToPool());
             }

@@ -11,7 +11,6 @@ public class FoodUI : MonoBehaviour
 
     public floatVariable CurrentFood;
 
-    [SerializeField] private UnityEvent Death;
     private void Start()
     {
         UpdateLife();
@@ -20,5 +19,9 @@ public class FoodUI : MonoBehaviour
     {
         _healthSlider.value = CurrentFood.Value;
 
+    }
+    public void Death()
+    {
+        Time.timeScale = 0f;
     }
 }
