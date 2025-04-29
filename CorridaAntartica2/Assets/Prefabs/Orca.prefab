@@ -123,7 +123,7 @@ GameObject:
   - component: {fileID: 1957382828323412396}
   m_Layer: 0
   m_Name: Orca
-  m_TagString: Predador
+  m_TagString: Orca
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

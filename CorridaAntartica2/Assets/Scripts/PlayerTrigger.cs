@@ -6,25 +6,27 @@ public class PlayerTrigger : MonoBehaviour
 {
     [SerializeField] private UnityEvent Food;
     [SerializeField] private UnityEvent Residuo;
-    [SerializeField] private UnityEvent Predador;
+    [SerializeField] private UnityEvent Orca;
+    [SerializeField] private UnityEvent Foca;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Food"))
         {
             Food.Invoke();
             collision.GetComponent<ObstaculoMov>().Return();
-            Debug.Log("Food");
         }
         if (collision.CompareTag("Residuo"))
         {
             Residuo.Invoke();
             collision.GetComponent<ObstaculoMov>().Return();
-            Debug.Log("Residuo");
         }
-        if (collision.CompareTag("Predador"))
+        if (collision.CompareTag("Orca"))
         {
-            Predador.Invoke();
-            Debug.Log("Residuo");
+            Orca.Invoke();
+        }
+        if (collision.CompareTag("Foca"))
+        {
+            Foca.Invoke();
         }
     }
 }

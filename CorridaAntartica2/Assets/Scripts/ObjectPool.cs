@@ -24,6 +24,9 @@ public class ObjectPool : MonoBehaviour
     [Space]
     public GameObject objectToPoolPlastic;
     public int amountToPoolPlastic;
+    [Space]
+    public GameObject objectToPoolRede;
+    public int amountToPoolRede;
 
     
 
@@ -100,6 +103,14 @@ public class ObjectPool : MonoBehaviour
             tmp6 = Instantiate(objectToPoolFoca);
             tmp6.SetActive(false);
             pooledObjects.Add(tmp6);
+        }
+
+        GameObject tmp7;
+        for (int i = 0; i < amountToPoolRede; i++)
+        {
+            tmp7 = Instantiate(objectToPoolRede);
+            tmp7.SetActive(false);
+            pooledObjects.Add(tmp7);
         }
     }
 }
