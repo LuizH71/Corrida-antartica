@@ -24,7 +24,7 @@ public class PauseGame : MonoBehaviour
     {
         _confirmQuit.SetActive(x);
     }
-    public void OnApplicationQuit()
+    public void Quit()
     {
         Application.Quit();
         Save.Value = 0;
