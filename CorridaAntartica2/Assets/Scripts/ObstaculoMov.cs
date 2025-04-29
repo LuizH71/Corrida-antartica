@@ -42,7 +42,7 @@ public class ObstaculoMov : MonoBehaviour
    
     public IEnumerator ReturnToPool()
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(6f);
         gameObject.SetActive(false);
         StopCoroutine(ReturnToPool());
     }
